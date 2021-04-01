@@ -1,16 +1,6 @@
 //Treehouse Techdegree: FSJS Project 2 - Data Pagination and Filtering
 //by Cody Reynolds
 
-//Adds search box to header
-let header = document.querySelector('.header');
-let searchBox = `
-   <label for="search" class="student-search">
-      <span>Search by name</span>
-      <input id="search" placeholder="Search by name...">
-      <button type="button" id="submit"><img src="img/icn-search.svg" alt="Search icon"></button>
-   </label>`;
-header.insertAdjacentHTML('beforeend', searchBox);
-
 let maxItemsPerPage = 9;
 
 /**
@@ -26,7 +16,6 @@ function showPage(list, page) {
    let endIndex = (page * maxItemsPerPage);
 
    let studentList = document.querySelector('.student-list');
-
    studentList.innerHTML = '';
 
    for (let i = 0; i < list.length; i++) {
@@ -48,8 +37,9 @@ function showPage(list, page) {
 }
 
 /**
- * Creates buttons for every page of student data. Clicking the buttons moves to the next or previous 9 students.
- *
+ * Creates buttons for every page of student data. 
+ * Clicking the buttons moves to the next or previous 9 students.
+ * 
  * @param {array} list The set of student data
  */
 
@@ -66,7 +56,7 @@ function addPagination(list) {
       linkList.insertAdjacentHTML('beforeend', button);
    }
 
-   let activeButton = document.querySelector('button');
+   let activeButton = document.querySelector('button'); //Only one button can be 'active'
    activeButton.className = 'active';
 
    //changes the active page and button styling upon click
@@ -79,15 +69,30 @@ function addPagination(list) {
    });
 }
 
-showPage(data, 1);
 addPagination(data);
+showPage(data, 1);
+
+
+//Extra Credit: Search functionality
+
+
+//Adds search box to header
+let header = document.querySelector('.header');
+let searchBox = `
+   <label for="search" class="student-search">
+      <span>Search by name</span>
+      <input id="search" placeholder="Search by name...">
+      <button type="button" id="submit"><img src="img/icn-search.svg" alt="Search icon"></button>
+   </label>`;
+header.insertAdjacentHTML('beforeend', searchBox);
+
 
 /**
  * Checks the search box's input text against a list of students' full names 
  *
  * @param {string} searchCriteria The user's input text
  * @param {array} list The data set of names
- * @returns {array} matches The array of student objects that have matched the input text.
+ * @returns {array} matches an array of student objects that contain the input text.
  * 
  */
 
@@ -102,7 +107,6 @@ function getMatches(searchCriteria, list) {
              matchList.push(list[i]);
           }
    } 
-
    return matchList;
 }
 

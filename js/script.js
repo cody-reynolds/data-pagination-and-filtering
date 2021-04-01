@@ -51,18 +51,18 @@ function addPagination(list) {
    for (i = 1; i <= numOfPages; i++){
       let button = `
          <li>
-            <button type="button">${i}</button>
+            <button type="button" class="page-button">${i}</button>
          </li>`;
       linkList.insertAdjacentHTML('beforeend', button);
    }
 
-   let activeButton = document.querySelector('button'); //Only one button can be 'active'
+   let activeButton = document.querySelector('.page-button'); //Only one button can be 'active'
    activeButton.className = 'active';
 
    //changes the active page and button styling upon click
    linkList.addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON') {
-         document.querySelector('.active').className = '';
+      if (e.target.tagName === 'BUTTON' && e.target.className === 'page-button') {
+         document.querySelector('.active').className = 'page-button';
          e.target.className = 'active';
          showPage(list, e.target.textContent);
       }

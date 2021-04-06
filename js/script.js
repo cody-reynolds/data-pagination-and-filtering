@@ -61,7 +61,7 @@ function addPagination(list) {
 
    //changes the active page and button styling upon click
    linkList.addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON' && e.target.className === 'page-button') {
+      if (e.target.tagName === 'BUTTON') {
          document.querySelector('.active').className = 'page-button';
          e.target.className = 'active';
          showPage(list, e.target.textContent);
@@ -71,9 +71,6 @@ function addPagination(list) {
 
 addPagination(data);
 showPage(data, 1);
-
-
-//Extra Credit: Search functionality
 
 
 //Adds search box to header
@@ -137,7 +134,7 @@ function searchFunction(searchCriteria) {
 let search = document.querySelector('#search');
 let submit = document.querySelector('#submit');
 
-search.addEventListener('keyup', () => {
+search.addEventListener('keyup', (e) => {
    searchFunction(search.value);
    });
 
